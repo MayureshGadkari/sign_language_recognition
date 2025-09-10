@@ -1,5 +1,5 @@
 from numba import jit, cuda
-from cv2 import cv2
+import cv2
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -26,7 +26,7 @@ hands = mp_hands.Hands(
 cap = cv2.VideoCapture(0)
 
 print("Training KNN clasifier")
-X = np.array(df.drop(["Lable", "Location"], 1))
+X = np.array(df.drop(["Lable", "Location"], axis =1))
 y = np.array(df["Lable"])
 X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=0)
 classifier = neighbors.KNeighborsClassifier(n_neighbors=8)
